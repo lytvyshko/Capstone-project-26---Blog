@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo list</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+
+<body class="container-lg d-flex flex-column justify-content-center pt-5">
+    <h1 class="mb-4 align-self-center">TODO LIST</h1>
+    <div class="d-flex gap-3">
+        <div class="input-group">
+            <input type="text" class="form-control border-end-0" placeholder="Search...">
+            <span class="input-group-text bg-transparent">
+            <i class="bi bi-search"></i>
+        </span>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle text-end" data-bs-toggle="dropdown" aria-expanded="false">
+                All
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">All</a></li>
+                <li><a class="dropdown-item" href="#">Complete</a></li>
+                <li><a class="dropdown-item" href="#">Incomplete</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <button class="btn btn-primary align-self-end mt-3 r-50% rounded-circle" style="width: 50px; height: 50px;" data-bs-toggle="modal" data-bs-target="#createPostModal">
+        <i class="bi bi-plus-lg"></i>
+    </button>
+
+    <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/add-post" class="modal-body d-flex flex-column gap-3">
+                    <input type="text" class="form-control" name="noteHeader" placeholder="Note title">
+                    <textarea
+                            class="form-control"
+                            rows="4"
+                            placeholder="Input your note..."
+                    ></textarea>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
