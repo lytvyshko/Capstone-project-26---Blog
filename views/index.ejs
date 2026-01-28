@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
-<body class="container-lg d-flex flex-column justify-content-center pt-5">
+<body class="container d-flex flex-column justify-content-center pt-5">
     <h1 class="mb-4 align-self-center">TODO LIST</h1>
-    <div class="d-flex gap-3">
+
+    <div class="d-flex gap-3 mb-4">
         <div class="input-group">
             <input type="text" class="form-control border-end-0" placeholder="Search...">
             <span class="input-group-text bg-transparent">
@@ -26,11 +27,18 @@
                 All
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">All</a></li>
-                <li><a class="dropdown-item" href="#">Complete</a></li>
-                <li><a class="dropdown-item" href="#">Incomplete</a></li>
+                <li><a class="dropdown-item" href="/posts">All</a></li>
+                <li><a class="dropdown-item" href="/posts?status=complete">Complete</a></li>
+                <li><a class="dropdown-item" href="/posts?status=incomplete">Incomplete</a></li>
             </ul>
         </div>
+    </div>
+
+    <div class="mb-3 d-flex align-items-center">
+        <div class="input-group-text bg-transparent border-0">
+            <input class="form-check-input mt-0" type="checkbox" value="" style="width: 24px; height: 24px;" >
+        </div>
+        <p class="m-0" style="font-size: 16px; font-weight: 500;">Task title</p>
     </div>
 
     <button class="btn btn-primary align-self-end mt-3 r-50% rounded-circle" style="width: 50px; height: 50px;" data-bs-toggle="modal" data-bs-target="#createPostModal">
@@ -44,18 +52,19 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/add-post" class="modal-body d-flex flex-column gap-3">
-                    <input type="text" class="form-control" name="noteHeader" placeholder="Note title">
+                <form action="/submit" method="POST" class="modal-body d-flex flex-column gap-3">
+                    <input type="text" class="form-control" name="noteHeader" placeholder="Note title" required>
                     <textarea
                             class="form-control"
+                            name="noteDescription"
                             rows="4"
                             placeholder="Input your note..."
                     ></textarea>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
                 </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
             </div>
         </div>
     </div>
