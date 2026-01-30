@@ -6,7 +6,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-const posts = [];
+let posts = [];
 
 const renderIndex = (req, res) => {
   const { status } = req.query;
@@ -49,6 +49,12 @@ app.patch("/posts/:id", (req, res) => {
 
   post.isComplete = req.body.isComplete;
 
+  res.sendStatus(204);
+});
+
+app.delete('/delete/:id', (req, res) => {
+  const id = Number(req.params.id);
+  posts = posts.filter(p => p.id !== id);
   res.sendStatus(204);
 });
 
