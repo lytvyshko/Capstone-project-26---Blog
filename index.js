@@ -9,9 +9,12 @@ app.use(express.json());
 let posts = [];
 
 const renderIndex = (req, res) => {
+  const searchInput = req.query.q?.toLowerCase() || '';
   const { status } = req.query;
 
-  const filteredPosts = posts.filter((post) => {
+  const filteredBySearch = posts.filter(p => p.title.toLowerCase().includes(searchInput));
+
+  const filteredByStatus = filteredBySearch.filter((post) => {
     if (status === 'completed') {
       return post.isComplete === true;
     } else if (status === 'incomplete') {
@@ -21,7 +24,7 @@ const renderIndex = (req, res) => {
     return post;
   })
 
-  res.render("index.ejs", { posts: filteredPosts });
+  res.render("index.ejs", { posts: filteredByStatus, search: searchInput, status });
 };
 
 app.get("/", renderIndex);
@@ -43,13 +46,13 @@ app.post("/submit", (req, res) => {
 app.post('/edit/:id', (req, res) => {
   const id = Number(req.params.id);
 
-  console.log(req.body.noteDescription);
+  const editedTodo = posts.find(post => post.id === id);
 
   posts.splice(id - 1, 1, {
+    ...editedTodo,
     id: id,
     title: req.body.noteHeader,
     text: req.body.noteDescription || '',
-    isComplete: false,
   });
 
   res.redirect('/');

@@ -16,20 +16,31 @@
 
     <div class="d-flex gap-3 mb-4">
         <div class="input-group">
-            <input type="text" class="form-control border-end-0" placeholder="Search...">
+            <input
+                id="searchInput"
+                type="text"
+                name="q"
+                class="form-control border-end-0"
+                value="<%= search %>"
+                placeholder="Search..."
+            >
+
             <span class="input-group-text bg-transparent">
                 <i class="bi bi-search"></i>
             </span>
         </div>
-
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle text-end" data-bs-toggle="dropdown" aria-expanded="false">
-                All
+                <% if (locals.status) { %>
+                    <%= status === 'completed' ? 'Complete' : 'Incomplete' %>
+                <% } else { %>
+                    All
+                <% } %>
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/posts">All</a></li>
-                <li><a class="dropdown-item" href="/posts?status=completed">Complete</a></li>
-                <li><a class="dropdown-item" href="/posts?status=incomplete">Incomplete</a></li>
+                <li><a class="dropdown-item" href="#" data-status="">All</a></li>
+                <li><a class="dropdown-item" href="#" data-status="completed">Complete</a></li>
+                <li><a class="dropdown-item" href="#" data-status="incomplete">Incomplete</a></li>
             </ul>
         </div>
     </div>
@@ -154,7 +165,9 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="./js/todos.js"></script>
+    <script src="./js/searchDebounce.js"></script>
+    <script src="./js/statusFiltering.js"></script>
+    <script src="./js/toggleTodo.js"></script>
     <script src="./js/addEditTodo.js"></script>
     <script src="./js/deleteTodo.js"></script>
 </body>
