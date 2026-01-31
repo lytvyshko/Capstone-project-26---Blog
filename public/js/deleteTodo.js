@@ -2,7 +2,7 @@ let todoId = null;
 const deleteModal = document.getElementById('deleteConfirmModal');
 
 deleteModal.addEventListener('show.bs.modal', (e) => {
-  const button = e.relatedTarget; // button that opened the modal
+  const button = e.relatedTarget;
   todoId = button.dataset.id;
 });
 

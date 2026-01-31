@@ -1,6 +1,5 @@
 function toggleTodo(id, isComplete) {
   const titleEl = document.querySelector(`.todo-title[data-id='${id}']`);
-  console.log(titleEl);
 
   if (titleEl) {
     titleEl.classList.toggle('todo-completed', isComplete);

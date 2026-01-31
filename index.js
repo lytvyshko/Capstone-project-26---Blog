@@ -40,6 +40,21 @@ app.post("/submit", (req, res) => {
   res.redirect("/");
 });
 
+app.post('/edit/:id', (req, res) => {
+  const id = Number(req.params.id);
+
+  console.log(req.body.noteDescription);
+
+  posts.splice(id - 1, 1, {
+    id: id,
+    title: req.body.noteHeader,
+    text: req.body.noteDescription || '',
+    isComplete: false,
+  });
+
+  res.redirect('/');
+});
+
 app.patch("/posts/:id", (req, res) => {
   const post = posts.find(p => p.id === Number(req.params.id));
 
